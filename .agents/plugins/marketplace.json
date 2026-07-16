@@ -1,0 +1,20 @@
+{
+  "name": "starlight",
+  "interface": {
+    "displayName": "Starlight"
+  },
+  "plugins": [
+    {
+      "name": "starlight",
+      "source": {
+        "source": "local",
+        "path": "./plugins/starlight"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "starlight",
+  "version": "0.1.0",
+  "description": "Account-installed Starlight workflows and hosted MCP tools for durable AI character creation.",
+  "author": {
+    "name": "Starlight",
+    "url": "https://starlight-platform.vercel.app"
+  },
+  "homepage": "https://starlight-platform.vercel.app/agent",
+  "repository": "https://github.com/xpriment626/starlight-plugin",
+  "keywords": [
+    "starlight",
+    "characters",
+    "generative-media",
+    "codex",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Starlight",
+    "shortDescription": "Create and steer durable AI characters",
+    "longDescription": "Connect Codex to a private Starlight workspace, create and refine character drafts, attach references, prepare costed identity, voice, and continuity plans, inspect hosted operations, and return approval and selection decisions to the signed-in human.",
+    "developerName": "Starlight",
+    "category": "Design",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://starlight-platform.vercel.app",
+    "defaultPrompt": [
+      "Open my Starlight workspace and show me the next character decision.",
+      "Create a character draft from this brief without generating yet.",
+      "Prepare a costed identity plan and wait for my approval."
+    ],
+    "brandColor": "#594BD1"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "starlight": {
+      "url": "https://starlight-platform.vercel.app/mcp",
+      "oauth_resource": "https://starlight-platform.vercel.app/mcp"
+    }
+  }
+}

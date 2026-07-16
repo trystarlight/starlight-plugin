@@ -1,0 +1,11 @@
+interface:
+  display_name: "Starlight"
+  short_description: "Steer account-bound characters through Starlight"
+  default_prompt: "Use $starlight to open my workspace and show me the next character decision."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "starlight"
+      description: "Authenticated Starlight character lifecycle tools"
+      transport: "streamable_http"
+      url: "https://starlight-platform.vercel.app/mcp"
