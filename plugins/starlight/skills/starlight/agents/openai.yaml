@@ -1,7 +1,7 @@
 interface:
   display_name: "Starlight"
   short_description: "Steer account-bound characters through Starlight"
-  default_prompt: "Use $starlight to open my workspace and show me the next character decision."
+  default_prompt: "Use $starlight to check my workspace readiness and show me the next character decision."
 dependencies:
   tools:
     - type: "mcp"
