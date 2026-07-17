@@ -2,6 +2,19 @@
 
 All notable public Starlight Codex plugin releases are recorded here. The private platform and MCP contract have independent versions.
 
+## [0.3.0] - 2026-07-17
+
+### Added
+
+- Exact account-bound ElevenLabs and Replicate-hosted default spoken-line planning.
+- Restart-safe recovery of prior account candidates through bounded recent executions.
+- Candidate-reference continuity planning for three-to-fifteen-second video and lip-sync work.
+- Guidance for the account candidate library and the human continuation checkpoint between dependent video operations.
+
+### Changed
+
+- Treat hosted outputs as persistent but unselected account candidates; persistence never implies identity, voice, canon, activation, or publication.
+
 ## [0.2.1] - 2026-07-17
 
 ### Fixed

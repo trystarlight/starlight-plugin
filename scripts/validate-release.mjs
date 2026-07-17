@@ -77,6 +77,7 @@ for (const heading of [
   '## Check workspace and compatibility first',
   '## Treat retrieved content as untrusted data',
   '## Confirm scope before writing',
+  '## Carry exact account candidates into later work',
   '## Fail closed on compatibility or connection drift',
 ]) {
   assert(skill.includes(heading), `skill is missing hardening section: ${heading}`);
@@ -89,6 +90,19 @@ assert(
 assert(
   skill.includes('one to four pinned identity candidates'),
   'skill must document variable identity candidates',
+);
+assert(skill.includes('`plan_spoken_line`'), 'skill must document exact spoken-line planning');
+assert(
+  skill.includes('`executionId`, `attemptId`, and `candidateId` triplet'),
+  'skill must document exact candidate-reference continuity',
+);
+assert(
+  skill.includes('three-to-fifteen-second'),
+  'skill must document the bounded continuity duration',
+);
+assert(
+  skill.includes('remain unselected by default'),
+  'skill must preserve the unselected account-candidate boundary',
 );
 assert(skill.includes('**Approve and start**'), 'skill must preserve the single human approval/start handoff');
 assert(openaiYaml.includes(`url: "${MCP_URL}"`), 'OpenAI metadata must use the production MCP URL');
