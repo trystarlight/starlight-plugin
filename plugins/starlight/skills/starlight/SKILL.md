@@ -11,11 +11,11 @@ Treat Starlight as the authoritative lifecycle service for durable AI characters
 
 Use only the `starlight` MCP tools installed with this plugin. Do not look for a Starlight repository, local CLI, provider key, bearer token, or filesystem runtime.
 
-If the tools are unavailable or authentication is required, direct the human to the signed-in Starlight **Agent** page at `https://starlight-platform.vercel.app/agent`. Never ask them to paste a token into chat. Retry the tool after they install or reconnect the plugin.
+If the tools are unavailable or authentication is required, direct the human to the signed-in Starlight **Agent** page at `https://app.trystarlight.io/agent`. Never ask them to paste a token into chat. Retry the tool after they install or reconnect the plugin.
 
 ## Check workspace and compatibility first
 
-Call `get_workspace_status` with `clientPluginVersion: "0.2.0"` when opening a connection, diagnosing a problem, or preparing work that could later spend provider credit. Use its returned workspace ID and name, granted scopes, MCP contract, sanitized capability status, execution pause state, and recovery path; never infer them from a prior task.
+Call `get_workspace_status` with `clientPluginVersion: "0.2.1"` when opening a connection, diagnosing a problem, or preparing work that could later spend provider credit. Use its returned workspace ID and name, granted scopes, MCP contract, sanitized capability status, execution pause state, and recovery path; never infer them from a prior task.
 
 - If compatibility is `update_required`, stop before writes or plans and follow the public update sequence below.
 - If compatibility is `update_recommended`, tell the human which version is recommended. Safe reads, draft edits, and provider-free planning may continue when the requested scopes are present.
@@ -101,7 +101,7 @@ Do not invent a tool, argument, lifecycle state, route, price, or recovery step 
 
 1. stop before writing or planning paid work;
 2. report the exact missing or incompatible surface;
-3. direct the human to `https://starlight-platform.vercel.app/agent`; and
+3. direct the human to `https://app.trystarlight.io/agent`; and
 4. offer the public update sequence:
 
    ```bash

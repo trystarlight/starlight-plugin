@@ -19,7 +19,7 @@ Before non-trivial work:
 - Allowed content: public workflow instructions, public metadata, production connection configuration, validation, release automation, and public documentation.
 - Forbidden content: private platform source or checkout paths, credentials, provider environment-variable names, tenant data, private prompts, anti-abuse implementation, hidden routing logic, or development/staging connection fallbacks.
 - Skill prose is not a security boundary. The private server must enforce authentication, workspace isolation, optimistic concurrency, idempotency, spend approval, routing, audit, and canon decisions.
-- The MCP config must contain only `https://starlight-platform.vercel.app/mcp`. Do not add headers, tokens, environment substitutions, alternate hosts, or local fallbacks.
+- The MCP config must contain only `https://app.trystarlight.io/mcp`. Do not add headers, tokens, environment substitutions, alternate hosts, or local fallbacks.
 
 ## Versioning and release
 

@@ -2,6 +2,13 @@
 
 All notable public Starlight Codex plugin releases are recorded here. The private platform and MCP contract have independent versions.
 
+## [0.2.1] - 2026-07-17
+
+### Fixed
+
+- Connect the hosted MCP client and all account recovery links through `app.trystarlight.io`, matching the production Clerk domain.
+- Report plugin 0.2.1 during workspace compatibility checks.
+
 ## [0.2.0] - 2026-07-16
 
 ### Added
