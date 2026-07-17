@@ -1,12 +1,12 @@
 {
   "name": "starlight",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Account-installed Starlight workflows and hosted MCP tools for durable AI character creation.",
   "author": {
     "name": "Starlight",
-    "url": "https://starlight-platform.vercel.app"
+    "url": "https://app.trystarlight.io"
   },
-  "homepage": "https://starlight-platform.vercel.app/agent",
+  "homepage": "https://app.trystarlight.io/agent",
   "repository": "https://github.com/xpriment626/starlight-plugin",
   "keywords": [
     "starlight",
@@ -27,7 +27,7 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://starlight-platform.vercel.app",
+    "websiteURL": "https://app.trystarlight.io",
     "defaultPrompt": [
       "Check my Starlight workspace readiness and show me the next character decision.",
       "Create a character draft from this brief without generating yet.",

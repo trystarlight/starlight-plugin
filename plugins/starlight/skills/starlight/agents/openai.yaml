@@ -8,4 +8,4 @@ dependencies:
       value: "starlight"
       description: "Authenticated Starlight character lifecycle tools"
       transport: "streamable_http"
-      url: "https://starlight-platform.vercel.app/mcp"
+      url: "https://app.trystarlight.io/mcp"

@@ -33,4 +33,4 @@ The Starlight application, database, provider routing, credentials, tenant enfor
 
 The plugin uses strict SemVer independently from the private platform and MCP contract. `main` is release-only; immutable `vX.Y.Z` tags and GitHub Releases identify shipped bundles. Run `node scripts/validate-release.mjs` before opening a release PR. See [`RELEASING.md`](RELEASING.md) and [`CHANGELOG.md`](CHANGELOG.md).
 
-The signed-in setup and recovery experience lives at <https://starlight-platform.vercel.app/agent>.
+The signed-in setup and recovery experience lives at <https://app.trystarlight.io/agent>.

@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "starlight": {
-      "url": "https://starlight-platform.vercel.app/mcp"
+      "url": "https://app.trystarlight.io/mcp"
     }
   }
 }
