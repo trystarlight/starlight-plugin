@@ -12,7 +12,7 @@ codex mcp login starlight
 
 The login command opens Starlight in the browser for account authorization. Then start a new Codex task and invoke `$starlight`. A Starlight account and workspace are required to use the tools.
 
-The skill checks the authenticated workspace, granted scopes, client compatibility, execution pause, and sanitized provider readiness before steering paid work. It can create provider-free plans for one to four identity candidates, but only the signed-in human can approve and start them in Starlight.
+The skill checks the authenticated workspace, granted scopes, client compatibility, execution pause, and sanitized provider readiness before steering paid work. It can create provider-free plans for one to four identity candidates, voice design, an exact spoken line, and three-to-fifteen-second video plus lip-sync continuity. Hosted outputs persist as unselected account candidates, and a later plan can reference their exact execution, attempt, and candidate IDs. Only the signed-in human can approve spend, start or continue execution, and decide selection or canon in Starlight.
 
 Update an existing installation with:
 

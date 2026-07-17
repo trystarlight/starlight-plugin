@@ -1,7 +1,7 @@
 {
   "name": "starlight",
-  "version": "0.2.1",
-  "description": "Account-installed Starlight workflows and hosted MCP tools for durable AI character creation.",
+  "version": "0.3.0",
+  "description": "Account-installed Starlight workflows and hosted MCP tools for durable character media creation.",
   "author": {
     "name": "Starlight",
     "url": "https://app.trystarlight.io"
@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Starlight",
     "shortDescription": "Create and steer durable AI characters",
-    "longDescription": "Connect Codex to a private Starlight workspace, verify account and provider readiness, create and refine character drafts, attach references, prepare costed identity, voice, and continuity plans, inspect hosted operations, and return approval and selection decisions to the signed-in human.",
+    "longDescription": "Connect Codex to a private Starlight workspace, verify account and provider readiness, create and refine character drafts, attach references, prepare costed identity, speech, voice, video, and lip-sync plans, carry exact account candidates between workflows, inspect hosted operations, and return approval and selection decisions to the signed-in human.",
     "developerName": "Starlight",
     "category": "Design",
     "capabilities": [
@@ -31,7 +31,7 @@
     "defaultPrompt": [
       "Check my Starlight workspace readiness and show me the next character decision.",
       "Create a character draft from this brief without generating yet.",
-      "Prepare a costed identity plan and wait for my approval."
+      "Create a costed character media workflow and stop at each approval."
     ],
     "brandColor": "#594BD1"
   }

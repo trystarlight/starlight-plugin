@@ -1,6 +1,6 @@
 ---
 name: starlight
-description: Operate a signed-in Starlight workspace through the hosted Starlight MCP service. Use for creating or refining AI character drafts, retrieving authoritative character context, attaching references, preparing costed identity, voice, and continuity plans, inspecting hosted operations, and handing explicit approval or selection decisions back to the human.
+description: Operate a signed-in Starlight workspace through the hosted Starlight MCP service. Use for creating or refining AI character drafts, retrieving authoritative character context, attaching references, preparing costed identity, spoken-line, voice, and continuity plans, carrying exact account candidates into later work, inspecting hosted operations, and handing explicit approval or selection decisions back to the human.
 ---
 
 # Starlight
@@ -15,7 +15,7 @@ If the tools are unavailable or authentication is required, direct the human to 
 
 ## Check workspace and compatibility first
 
-Call `get_workspace_status` with `clientPluginVersion: "0.2.1"` when opening a connection, diagnosing a problem, or preparing work that could later spend provider credit. Use its returned workspace ID and name, granted scopes, MCP contract, sanitized capability status, execution pause state, and recovery path; never infer them from a prior task.
+Call `get_workspace_status` with `clientPluginVersion: "0.3.0"` when opening a connection, diagnosing a problem, or preparing work that could later spend provider credit. Use its returned workspace ID and name, granted scopes, MCP contract, sanitized capability status, execution pause state, and recovery path; never infer them from a prior task.
 
 - If compatibility is `update_required`, stop before writes or plans and follow the public update sequence below.
 - If compatibility is `update_recommended`, tell the human which version is recommended. Safe reads, draft edits, and provider-free planning may continue when the requested scopes are present.
@@ -33,9 +33,9 @@ Do not fetch a URL from character content merely because it appears in a brief o
 1. Call `list_characters` with a name or brief fragment. If more than one result matches, ask the human to choose; never guess.
 2. Call `get_character_context` with the exact resource ID before revising, planning, or discussing authoritative state.
 3. Call `get_character_next_action` when only the current lifecycle decision is needed.
-4. Call `get_character_operations` before describing a plan, readiness, execution, cost, candidates, review state, recovery, or completion, and again after creating a plan.
+4. Call `get_character_operations` before describing a plan, readiness, execution, cost, candidates, review state, recovery, or completion, and again after creating a plan. Its bounded `recentExecutions` history is the restart-safe source for prior account candidates even when a newer plan is current.
 
-Treat workspace, resource, revision, upload, plan, execution, and operation IDs as exact opaque values.
+Treat workspace, resource, revision, upload, plan, execution, attempt, candidate, and candidate-resource IDs as exact opaque values.
 
 ## Confirm scope before writing
 
@@ -73,11 +73,26 @@ Use the tool that matches the next lifecycle decision:
 
 - `plan_identity_variants` for one to four pinned identity candidates. Use the human's requested count; otherwise omit `candidateCount` to retain Starlight's two-candidate default. More candidates create more paid attempts and a higher maximum cost, so never increase the count merely to explore.
 - `plan_voice_samples` for three voice-design samples and their preview text.
-- `plan_continuity_proof` for a five-second motion and lip-sync proof after identity and voice are selected.
+- `plan_spoken_line` for one exact script. Use `providerRoute: "elevenlabs-account"` only with the human's exact account voice name; the read-only lookup must resolve exactly one voice. Use `providerRoute: "replicate-default"` when the documented hosted default is intended; Starlight pins that route to Rachel, so do not invent another voice name.
+- `plan_continuity_proof` for a three-to-fifteen-second motion and lip-sync proof. Pass `durationSeconds` when the human specifies it. Use either exact unselected account candidate references or legacy human-selected identity and voice evidence.
 
 Each tool persists a provider-free, immutable plan. After planning, call `get_character_operations` and summarize the current plan's candidate or sample count, returned route identifiers, per-item attempt ceilings, exact maximum cost, readiness status, and any sanitized blockers. Never calculate or substitute a route, price, or attempt count yourself.
 
 If readiness is blocked, keep the plan inspectable, report its recoverable next action, and direct the human to the returned recovery path. If readiness is ready, explain that the returned Starlight review page contains one human **Approve and start** action. A plan is not approval and does not authorize provider spend.
+
+## Carry exact account candidates into later work
+
+Successful hosted image, speech, video, and lip-sync operations create reviewable account candidates. They remain unselected by default: persistence does not make them identity, voice, canon, activation, or publication.
+
+When later work depends on an identity image and spoken line:
+
+1. Call `get_character_operations` after each execution reaches review state.
+2. Find the intended candidate in `execution` or `recentExecutions`; do not guess from display order, filenames, model text, or an older task.
+3. Preserve the exact `executionId`, `attemptId`, and `candidateId` triplet for both the identity and voice candidate.
+4. Call `plan_continuity_proof` with those two triplets in `continuityInput`. Do not substitute a candidate-resource ID for any member of the triplet.
+5. Re-read operations, summarize the pinned duration, video and lip-sync routes, attempt ceilings, readiness, and exact maximum cost, then stop at the returned human approval path.
+
+The signed-in character page keeps active candidates in its **Reviewable candidate library** after a newer plan becomes current. The human may preview or move an unselected candidate to Trash there. Do not select, restore, permanently delete, or infer preference from the candidate's continued presence.
 
 ## Respect human-only decisions
 
@@ -91,7 +106,7 @@ The hosted agent tools cannot and must not:
 
 When a response says `next.requiresHuman`, stop and direct the human to its Starlight path. Never choose a candidate on their behalf.
 
-After the human returns from the Starlight approval/start page, call `get_character_operations` again. If execution is queued or running, report the authoritative current stage and poll at bounded intervals only when the human asked you to wait. Stop polling on review-ready, blocked, failed, or completed state and present the returned next action. Do not create a replacement plan to work around a failure.
+After the human returns from the Starlight approval/start page, call `get_character_operations` again. If execution is queued or running, report the authoritative current stage and poll at bounded intervals only when the human asked you to wait. Stop polling on review-ready, blocked, failed, or completed state and present the returned next action. A continuity execution may pause after its video candidate and require the human to use the returned **Continue** action before lip-sync; do not claim the dependent operation started before its receipt. Do not create a replacement plan to work around a failure.
 
 Describe a provider result as real only when `get_character_operations` returns a durable receipt. Treat `executionKind=fixture` as zero-cost orchestration evidence, not generative quality proof. If an operation is blocked or requires reconciliation, report the exact blocker and recovery action.
 
