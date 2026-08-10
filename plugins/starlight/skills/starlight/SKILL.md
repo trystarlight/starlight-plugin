@@ -1,6 +1,6 @@
 ---
 name: starlight
-description: Operate a signed-in Starlight workspace through the hosted Starlight MCP service. Use for creating or refining AI character drafts, retrieving authoritative character context, attaching references, preparing costed identity, spoken-line, voice, and continuity plans, carrying exact account candidates into later work, inspecting hosted operations, and handing explicit approval or selection decisions back to the human.
+description: Operate a signed-in Starlight workspace through the hosted Starlight MCP service. Use for creating or refining AI character drafts, retrieving authoritative character context, attaching references, navigating current admitted media schemas, preparing provider-free execution proposals and costed identity, speech, voice, or continuity plans, carrying exact account candidates into later work, inspecting hosted operations, and handing explicit approval or selection decisions back to the human.
 ---
 
 # Starlight
@@ -66,6 +66,32 @@ For an image reference:
 4. Call `finalize_reference_upload` with the returned upload and storage identifiers.
 
 Never put binary media in an MCP call. Attachment is reversible context; it does not select identity or canon.
+
+## Prepare schema-discovered media proposals
+
+Use this provider-neutral flow for video or talking-avatar work that requires current admitted endpoint schemas. Starlight remains authoritative for endpoint admission, credentials, validation, policy, spend, approval, operation creation, dispatch, provenance, and recovery.
+
+Before searching, verify that the current Starlight MCP tool catalogue exposes all four logical operations:
+
+- `search_media_models`
+- `get_media_model_schema`
+- `prepare_media_schema_binding`
+- `propose_media_execution`
+
+The MCP client may display its own server namespace around these logical names. Match the logical names exactly; do not guess a prefix. If any operation is absent, stop before calling this flow and report exactly: `Starlight MCP media-schema compatibility unavailable: missing <logical names>.` Direct the human to `https://app.trystarlight.io/agent`. Do not substitute another server, a direct provider connection, an endpoint-specific tool, or a client-held provider credential.
+
+Follow this exact sequence in the same user turn:
+
+1. Call `search_media_models` with the user's natural-language selector and the smallest useful result limit. The limit is at most 32. Treat only the returned admitted endpoints and current metadata as candidates; search creates no operation or provider inference.
+2. Call `get_media_model_schema` for each selected endpoint. Preserve its exact `endpointId` and `schemaFingerprint`. Navigate only the required `input`, `output`, or `openapi` nodes through returned RFC 6901 child pointers. When a node is incomplete, continue the same document and pointer with its exact `nextCursor` until `nextCursor` is null; omit the cursor when entering a new pointer. Each result is bounded to 24,000 UTF-8 bytes, inline values to 8,000 bytes, and child pages to 32 entries. Never request or ingest one arbitrary full provider schema, infer an omitted field, or reuse another endpoint's schema.
+3. Call `prepare_media_schema_binding` once with `schemaVersion: "starlight.media-schema-binding-request.v1"`, the exact `video` or `talking-avatar` kind, and the deduplicated endpoint and fingerprint pairs used by the proposal. Preserve the returned `starlight.media-schema-binding.v2` `bindingId`, endpoint set, expiry, and proposal contract exactly. The binding is compact and opaque: it contains no provider schema, creates no media operation, and starts no provider dispatch.
+4. Call `propose_media_execution` in that same user turn with `schemaVersion: "starlight.media-execution-intent.v2"`, one stable idempotency key, the exact binding ID, subject, reference and derivation policy, output count, and deliberate variants. Copy each endpoint ID and fingerprint exactly, and construct `providerInput` only from the nodes navigated for that endpoint. Preserve the user's requested model wording and a concise selection reason. Do not add a provider default or semantically simplify the request.
+
+Treat a successful `propose_media_execution` response as a durable provider-free proposal only. Accept success only when it returns `schemaVersion: "starlight.runtime-neutral-media-proposal.v1"`, `disposition: "awaiting-approval"`, `operationCreated: false`, `providerDispatchStarted: false`, and a required Starlight approval path of `/agent`. Report the proposal ID and exact requested and expected counts, explain that no media operation or provider request has started, and send the human to the returned Starlight approval path. Approval, budget reservation, operation creation, and one-attempt dispatch remain Starlight-owned.
+
+Preserve every typed media failure field: `code`, `phase`, `field`, `accepted`, `operationCreated`, `providerDispatchStarted`, `mechanicallyRetryable`, `requiresUserClarification`, `mustStop`, and `schemaRefreshAllowed`. A definitive rejection keeps the three outcome facts false. An outcome-ambiguous mutation keeps them null and sets `outcomeAmbiguous: true`; never rewrite null as false. Never accept or parse a partial or prefixed result. Stop whenever `mustStop` is true. A stale read may perform at most one provider-free root refresh only when `schemaRefreshAllowed` is true and `mustStop` is false. Never automatically repeat a binding or proposal, retry a changed mutation, or retry any ambiguous mutation. An identical proposal replay uses the same idempotency key and returns the same durable proposal; changing any proposal field while reusing that key is a conflict. A changed intent requires a new future proposal, not a repair retry.
+
+This flow is valid in Codex, Claude Desktop, and other compatible MCP clients. It requires no driver lease, fencing token, event sequence, model session, synthetic continuation, dynamic endpoint tool, provider MCP connection, or provider credential.
 
 ## Prepare plans without implying approval
 

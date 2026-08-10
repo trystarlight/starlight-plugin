@@ -4,9 +4,11 @@ The public plugin is versioned independently from the private Starlight platform
 
 ## SemVer
 
-- **Patch** — security hardening, instructions, diagnostics, metadata, or connection fixes that preserve the current MCP contract.
-- **Minor** — backward-compatible workflow capability or optional tool support.
+- **Patch** — the default for changes to the existing Starlight skill, including workflow guidance, support for backward-compatible server tools, security hardening, instructions, diagnostics, metadata, compatibility, and connection fixes.
+- **Minor** — a new independently discoverable public surface such as another skill, command, app, connector, MCP server, or permission class.
 - **Major** — required client migration or intentionally breaking workflow expectations.
+
+Editing `SKILL.md`, teaching the existing skill another workflow, or releasing a compatible platform/MCP update does not by itself justify a minor plugin bump. A platform release does not imply a plugin release.
 
 Public releases use clean strict SemVer. Do not publish `+codex.*` cachebuster versions; those suffixes are only for local development.
 

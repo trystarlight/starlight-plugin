@@ -24,7 +24,10 @@ Before non-trivial work:
 ## Versioning and release
 
 - `.codex-plugin/plugin.json` is the canonical strict SemVer.
-- Patch releases harden or clarify the existing client contract; minor releases add backward-compatible workflows; major releases require an explicit migration.
+- Patch is the default for changes to the existing Starlight skill, including workflow guidance, support for backward-compatible server tools, hardening, diagnostics, metadata, compatibility, and connection fixes.
+- Minor releases require a new independently discoverable public surface such as another skill, command, app, connector, MCP server, or permission class. Editing `SKILL.md` or teaching the existing skill another workflow does not by itself justify a minor bump.
+- Major releases require an explicit client migration or intentionally breaking public expectations.
+- A platform or MCP release does not imply a plugin release. Bump the plugin only when public client material changes and classify that change independently.
 - `main` is release-only. Change the plugin through a branch and PR, update `CHANGELOG.md`, and run `node scripts/validate-release.mjs`.
 - Tag only the verified merge commit as `vX.Y.Z`. Never move or rewrite a release tag; corrections use a new patch release.
 - Git marketplace refresh and plugin reinstall are separate steps. Updated skills and tools load only in a fresh Codex task.
