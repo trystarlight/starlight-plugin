@@ -5,7 +5,7 @@ The official Starlight Codex plugin installs the `$starlight` workflow and confi
 Install from a terminal:
 
 ```bash
-codex plugin marketplace add xpriment626/starlight-plugin
+codex plugin marketplace add trystarlight/starlight-plugin
 codex plugin add starlight@starlight
 codex mcp login starlight
 ```
