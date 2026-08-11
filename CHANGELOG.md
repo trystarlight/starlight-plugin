@@ -2,6 +2,17 @@
 
 All notable public Starlight Codex plugin releases are recorded here. The private platform and MCP contract have independent versions.
 
+## [0.3.1] - 2026-08-11
+
+### Added
+
+- Provider-neutral discovery, bounded schema navigation, opaque schema binding, and durable media-proposal guidance for compatible MCP clients.
+
+### Fixed
+
+- Preserve typed definitive and outcome-ambiguous mutation failures without automatic retries or partial-result parsing.
+- Use the canonical `trystarlight/starlight-plugin` repository path for installation and release metadata.
+
 ## [0.3.0] - 2026-07-17
 
 ### Added

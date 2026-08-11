@@ -43,7 +43,7 @@ Public releases use clean strict SemVer. Do not publish `+codex.*` cachebuster v
 Install:
 
 ```bash
-codex plugin marketplace add xpriment626/starlight-plugin
+codex plugin marketplace add trystarlight/starlight-plugin
 codex plugin add starlight@starlight
 codex mcp login starlight
 ```

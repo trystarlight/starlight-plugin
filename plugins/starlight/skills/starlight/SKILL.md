@@ -15,7 +15,7 @@ If the tools are unavailable or authentication is required, direct the human to 
 
 ## Check workspace and compatibility first
 
-Call `get_workspace_status` with `clientPluginVersion: "0.3.0"` when opening a connection, diagnosing a problem, or preparing work that could later spend provider credit. Use its returned workspace ID and name, granted scopes, MCP contract, sanitized capability status, execution pause state, and recovery path; never infer them from a prior task.
+Call `get_workspace_status` with `clientPluginVersion: "0.3.1"` when opening a connection, diagnosing a problem, or preparing work that could later spend provider credit. Use its returned workspace ID and name, granted scopes, MCP contract, sanitized capability status, execution pause state, and recovery path; never infer them from a prior task.
 
 - If compatibility is `update_required`, stop before writes or plans and follow the public update sequence below.
 - If compatibility is `update_recommended`, tell the human which version is recommended. Safe reads, draft edits, and provider-free planning may continue when the requested scopes are present.

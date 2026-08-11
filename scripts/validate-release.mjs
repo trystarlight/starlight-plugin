@@ -18,7 +18,7 @@ const assert = (condition, message) => {
 const SEMVER = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
 const PRODUCTION_ORIGIN = 'https://app.trystarlight.io';
 const MCP_URL = `${PRODUCTION_ORIGIN}/mcp`;
-const REPOSITORY = 'https://github.com/xpriment626/starlight-plugin';
+const REPOSITORY = 'https://github.com/trystarlight/starlight-plugin';
 
 function collectFiles(path) {
   const files = [];

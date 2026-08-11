@@ -1,13 +1,13 @@
 {
   "name": "starlight",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Account-installed Starlight workflows and hosted MCP tools for durable character media creation.",
   "author": {
     "name": "Starlight",
     "url": "https://app.trystarlight.io"
   },
   "homepage": "https://app.trystarlight.io/agent",
-  "repository": "https://github.com/xpriment626/starlight-plugin",
+  "repository": "https://github.com/trystarlight/starlight-plugin",
   "keywords": [
     "starlight",
     "characters",
